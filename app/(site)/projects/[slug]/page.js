@@ -118,7 +118,7 @@ export default async function ProjectDetail({ params }) {
             )}
 
             {project.liveUrl ? (
-              <a
+              
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer"
@@ -132,26 +132,29 @@ export default async function ProjectDetail({ params }) {
         </div>
 
         {/* Gallery — every tile is the same aspect ratio (4:3) so uploads of
-            different dimensions still line up cleanly on the grid. */}
-        {project.gallery?.length > 0 && (
+            different dimensions still line up cleanly on the grid. Items
+            without an uploaded image yet are skipped instead of crashing. */}
+        {project.gallery?.filter((img) => img?.src)?.length > 0 && (
           <div className="mt-16">
             <Reveal>
               <h2 className="font-display text-2xl tracking-wide text-bone">Gallery</h2>
             </Reveal>
             <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {project.gallery.map((img, i) => (
-                <Reveal key={img.src} delay={i * 0.06}>
-                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10">
-                    <Image
-                      src={img.src}
-                      alt={img.alt || project.title}
-                      fill
-                      sizes="(min-width: 640px) 50vw, 100vw"
-                      className="object-cover"
-                    />
-                  </div>
-                </Reveal>
-              ))}
+              {project.gallery
+                .filter((img) => img?.src)
+                .map((img, i) => (
+                  <Reveal key={img.src} delay={i * 0.06}>
+                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10">
+                      <Image
+                        src={img.src}
+                        alt={img.alt || project.title}
+                        fill
+                        sizes="(min-width: 640px) 50vw, 100vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  </Reveal>
+                ))}
             </div>
           </div>
         )}

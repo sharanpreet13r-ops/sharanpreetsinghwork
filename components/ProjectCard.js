@@ -11,14 +11,20 @@ export default function ProjectCard({ project }) {
     >
       {/* Fixed aspect ratio keeps every cover image the same display size,
           regardless of the source file's original dimensions. */}
-      <div className="relative aspect-[16/10] w-full">
-        <Image
-          src={project.cover}
-          alt={`${project.title} preview`}
-          fill
-          sizes="(min-width: 768px) 640px, 100vw"
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-        />
+      <div className="relative aspect-[4/3] w-full bg-white/5">
+        {project.cover ? (
+          <Image
+            src={project.cover}
+            alt={`${project.title} preview`}
+            fill
+            sizes="(min-width: 1024px) 400px, (min-width: 768px) 45vw, 100vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+        ) : (
+          <div className="grid h-full w-full place-items-center text-xs text-white/50">
+            No cover image yet
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
       </div>
       <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-6">

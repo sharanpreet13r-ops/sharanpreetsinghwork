@@ -60,7 +60,7 @@ export default function Hero({ site }) {
             {site.socials.map((s) => {
               const Icon = ICONS[s.icon] || Sparkle;
               return (
-                
+                <a
                   key={s.label}
                   href={s.href}
                   target="_blank"
@@ -80,7 +80,7 @@ export default function Hero({ site }) {
       <Reveal delay={0.3}>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           {site.ctaPrimary?.label && (
-            
+            <a
               href={site.ctaPrimary.href || "#contact"}
               data-cursor-hover
               className="group flex items-center gap-2 rounded-full bg-white/10 py-3 pl-6 pr-2 text-sm font-semibold text-bone transition-colors hover:bg-white/15"
@@ -92,7 +92,7 @@ export default function Hero({ site }) {
             </a>
           )}
           {site.ctaSecondary?.label && (
-            
+            <a
               href={site.ctaSecondary.href || "#work"}
               data-cursor-hover
               className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-bone/90 transition-colors hover:border-ember hover:text-ember"

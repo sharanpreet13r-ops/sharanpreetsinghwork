@@ -12,21 +12,25 @@ export default function Hero({ site }) {
   return (
     <section id="top" className="relative flex flex-col items-center px-6 pb-24 pt-16 text-center md:pt-24">
       <Reveal>
-        <div className="relative mx-auto h-64 w-64 overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-[0_0_80px_-10px_rgba(255,90,31,0.5)] md:h-80 md:w-80">
-          {site.heroImage ? (
-            <Image
-              src={site.heroImage}
-              alt={site.name || "Profile photo"}
-              fill
-              priority
-              sizes="320px"
-              className="object-cover"
-            />
-          ) : (
-            <div className="grid h-full w-full place-items-center text-sm text-bone/40">
-              Add a hero photo in the Studio
-            </div>
-          )}
+        <div className="relative mx-auto flex h-80 w-80 items-center justify-center md:h-96 md:w-96">
+          {/* Background glow behind the portrait */}
+          <div className="absolute inset-[-15%] -z-10 rounded-full bg-gradient-to-br from-ember/50 via-amber/30 to-transparent blur-3xl" />
+          <div className="relative h-full w-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-[0_0_100px_-10px_rgba(255,90,31,0.55)]">
+            {site.heroImage ? (
+              <Image
+                src={site.heroImage}
+                alt={site.name || "Profile photo"}
+                fill
+                priority
+                sizes="384px"
+                className="object-cover"
+              />
+            ) : (
+              <div className="grid h-full w-full place-items-center text-sm text-bone/40">
+                Add a hero photo in the Studio
+              </div>
+            )}
+          </div>
         </div>
       </Reveal>
 
@@ -56,7 +60,7 @@ export default function Hero({ site }) {
             {site.socials.map((s) => {
               const Icon = ICONS[s.icon] || Sparkle;
               return (
-                <a
+                
                   key={s.label}
                   href={s.href}
                   target="_blank"
@@ -76,7 +80,7 @@ export default function Hero({ site }) {
       <Reveal delay={0.3}>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           {site.ctaPrimary?.label && (
-            <a
+            
               href={site.ctaPrimary.href || "#contact"}
               data-cursor-hover
               className="group flex items-center gap-2 rounded-full bg-white/10 py-3 pl-6 pr-2 text-sm font-semibold text-bone transition-colors hover:bg-white/15"
@@ -88,7 +92,7 @@ export default function Hero({ site }) {
             </a>
           )}
           {site.ctaSecondary?.label && (
-            <a
+            
               href={site.ctaSecondary.href || "#work"}
               data-cursor-hover
               className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-bone/90 transition-colors hover:border-ember hover:text-ember"
